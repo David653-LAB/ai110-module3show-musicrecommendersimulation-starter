@@ -86,8 +86,8 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     # 1. Genre match: worth 2.0 points (the strongest signal).
     #    .get() returns None instead of crashing if the key is missing.
     if song["genre"] == user_prefs.get("genre"):
-        score += 2.0
-        reasons.append("genre match (+2.0)")
+        score += 1.0
+        reasons.append("genre match (+1.0)")
 
     # 2. Mood match: worth 1.0 point.
     if song["mood"] == user_prefs.get("mood"):
@@ -98,8 +98,9 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     #    The closer the song's energy is to the target, the closer to 1.0.
     if "energy" in user_prefs:
         energy_points = 1 - abs(song["energy"] - user_prefs["energy"])
-        score += energy_points
-        reasons.append(f"energy similarity (+{energy_points:.2f})")
+        
+        score+= energy_points*2
+        reasons.append(f"energy similarity (+{energy_points*2 :.2f})")
 
     # 4. Tempo similarity: up to 0.5 points, only if the user gave a tempo.
     #    A 100 BPM gap (or more) earns 0; max(0, ...) stops it going negative.
