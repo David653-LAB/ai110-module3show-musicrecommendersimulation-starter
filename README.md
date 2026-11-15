@@ -46,13 +46,14 @@ Sort songs by total score
 Display the Top 5 recommendations
 
 Algorithm Recipe
-- Genre match: +2.0 points.
+
+- Genre match: +1.0 point.
 - Mood match: +1.0 point.
-- Energy similarity: up to +1.0 point.
+- Energy similarity: up to +2.0 points.
 - Tempo similarity: up to +0.5 points.
 - Sort songs by total score, highest first, and return the Top 5.
 Expected Biases
-- Genre has the largest weight, so recommendations may over-prioritize a user's favorite genre.
+- Energy has the largest possible contribution, so recommendations may over-prioritize songs with similar energy levels.
 - Tempo and energy can overlap, potentially giving similar musical characteristics extra influence.
 - Exact genre and mood matching may penalize songs that are similar but use different labels.
 

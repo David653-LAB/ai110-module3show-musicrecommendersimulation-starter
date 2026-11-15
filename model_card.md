@@ -197,10 +197,16 @@ After changing the weights, Gym Hero ranked first with a score of 2.96. This sho
 
 ## 8. Future Work  
 
-Future improvements could be adding more songs and musical genres to the dataset along with addition features like lyrics, histirt and user feedback.
+Future improvements could be adding more songs and musical genres to the dataset along with additional features like lyrics, history and user feedback.
 
 ---
 
 ## 9. Personal Reflection  
 
-I learned that music recommendations involve more than matching genres because features like mood, energy, and temp can influence how well a song matches someone's taste. Recommendation systems can introduce bias by repeatedly suggesting similar context which can limit discovery and create an echo chamber.
+I learned that music recommendations involve more than matching genres because features like mood, energy, and tempo can influence how well a song matches someone's taste. Recommendation systems can introduce bias by repeatedly suggesting similar content which can limit discovery and create an echo chamber.
+
+Using AI tools helped me understand the code, troubleshoot problems, and experiment with different scoring weights. However, I still needed to check the generated code and test the results myself to make sure they were correct.
+
+I was surprised that a simple scoring algorithm could produce recommendations that felt meaningful, even though it did not fully understand someone's musical taste.
+
+If I continued this project, I would add more songs, include additional features, and explore using user feedback to improve recommendations.
