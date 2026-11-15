@@ -11,7 +11,7 @@ Your goal is to:
 - Evaluate what your system gets right and wrong
 - Reflect on how this mirrors real world AI recommenders
 
-Replace this paragraph with your own summary of what your version does.
+This project simulates a music recommendation system that suggests songs based on a user's musical preferences. It uses song attributes such as genre, mood, energy, and tempo to calculate recommendation scores and rank songs based on how closely they match the user's taste.
 
 ---
 
@@ -19,15 +19,44 @@ Replace this paragraph with your own summary of what your version does.
 
 Explain your design in plain language.
 
-Some prompts to answer:
+Our music recommendation system uses content-based filtering to suggest songs based on a user's musical preferences.
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+Each Song contains information such as its title, artist, genre, mood, energy, tempo, valence, danceability, and acousticness.
 
-You can include a simple diagram or bullet list if helpful.
+The UserProfile stores the user's preferred genres and moods, along with numerical preferences such as energy, tempo, and valence.
+
+The Recommender compares each song's features with the user's preferences and calculates a weighted score. Songs that match the user's preferences more closely receive higher scores.
+
+Finally, the system ranks songs from highest score to lowest score and recommends the best matches to the user.
+
+
+INPUT
+User Preferences
+(genre, mood, target energy, target tempo)
+        |
+        v
+PROCESS
+Loop through every song in songs.csv
+Calculate genre, mood, energy, and tempo points
+Add the points to get a total score
+        |
+        v
+OUTPUT
+Sort songs by total score
+Display the Top 5 recommendations
+
+Algorithm Recipe
+- Genre match: +2.0 points.
+- Mood match: +1.0 point.
+- Energy similarity: up to +1.0 point.
+- Tempo similarity: up to +0.5 points.
+- Sort songs by total score, highest first, and return the Top 5.
+Expected Biases
+- Genre has the largest weight, so recommendations may over-prioritize a user's favorite genre.
+- Tempo and energy can overlap, potentially giving similar musical characteristics extra influence.
+- Exact genre and mood matching may penalize songs that are similar but use different labels.
+
+
 
 ---
 
@@ -68,15 +97,25 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Sample Recommendation Output
 
-Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
+```text
+Loaded songs: 10
 
-```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
+Top recommendations:
+
+Sunrise City - Score: 3.98
+Because: genre match (+2.0), mood match (+1.0), energy similarity (+0.98)
+
+Gym Hero - Score: 2.87
+Because: genre match (+2.0), energy similarity (+0.87)
+
+Rooftop Lights - Score: 1.96
+Because: mood match (+1.0), energy similarity (+0.96)
+
+Night Drive Loop - Score: 0.95
+Because: energy similarity (+0.95)
+
+Storm Runner - Score: 0.89
+Because: energy similarity (+0.89)
 ```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
